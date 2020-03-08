@@ -5,6 +5,7 @@
 
 class JavaThread implements Runnable
 {
+    // Declaring my variables //
     private int end;
     private int start;
     private int Integer;
@@ -19,13 +20,14 @@ class JavaThread implements Runnable
         this.Big = 0;
         this.Count = 1;
     }
-
-    public int getInt()
+    // Done setting my variables //
+    
+    public int getInt() // lol i dont think i used getint func
     {
         return this.Integer;
     }
 
-    public static int countDivisors(int n)
+    public static int countDivisors(int n) // func for finding a numbers # of divisors
     {
         int count = 0;
         for(int i = 1; i <= Math.sqrt(n); i++)
@@ -45,7 +47,7 @@ class JavaThread implements Runnable
         return count;
     }
 
-    public void func(int start, int end)
+    public void func(int start, int end) //Basically runs a for loop from a given start to end using divisor func
     {
         for(int i = start; i < end; i++)
         {
@@ -57,33 +59,32 @@ class JavaThread implements Runnable
         }
     }
 
-    public void run(){
+    public void run(){ // Java yelled at me for not having this, i have no clue what this does. Thinks its to specify func to thread
         func(this.start, this.end);
     }
 
-    public void Threads(int amount) throws InterruptedException
+    public void Threads(int amount) throws InterruptedException // Java yelled at me for not having exception
     {
-        int threads = amount;
-        int partition = 100000/amount;
-        Thread thread[] = new Thread[amount];
-        for(int i = 0; i < threads;i++)
+        int partition = 100000/amount;                          // HW specifies 100k numbers so 100k/thread amount
+        Thread thread[] = new Thread[amount];                   // Initializing array for threads 
+        for(int i = 0; i < threads;i++)                         // How many threads we gonna run
         {
             System.out.println("Thread " + (i+1) + " Initializing");
-            this.end = partition * this.Count;
-            this.start = partition * (this.Count-1);
-            this.Count++;
-            thread[i] = new Thread(this);
-            thread[i].start();
+            this.end = partition * this.Count;                  // We giving a end and a start to work with using our function
+            this.start = partition * (this.Count-1);            // 25k * 1 = end, 25k* 0 = start; 25k*2 = end, 25*1 = start; etc;
+            this.Count++;                                       // count increment
+            thread[i] = new Thread(this);                       // throwing jobs into array
+            thread[i].start();                                  // starting thread
         }
         for(int j = 1; j <= amount;j++)
         {
-            thread[j-1].join();
+            thread[j-1].join();                                 // closing thread
         }
 
         System.out.println(this.Integer + " Is the largest Divisor with " + this.Big + " Divisors");
         
     }
-    public static void main(String args[]) throws InterruptedException
+    public static void main(String args[]) throws InterruptedException // Java yelled at me again for not having exception here
     {
         long startTime1 = System.nanoTime();
         JavaThread solo = new JavaThread();
