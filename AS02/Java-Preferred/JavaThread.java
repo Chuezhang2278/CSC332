@@ -65,6 +65,7 @@ class JavaThread implements Runnable
 
     public void Threads(int amount) throws InterruptedException // Java yelled at me for not having exception
     {
+        int threads = amount;
         int partition = 100000/amount;                          // HW specifies 100k numbers so 100k/thread amount
         Thread thread[] = new Thread[amount];                   // Initializing array for threads 
         for(int i = 0; i < threads;i++)                         // How many threads we gonna run
