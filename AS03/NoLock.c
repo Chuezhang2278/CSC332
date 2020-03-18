@@ -34,7 +34,7 @@ int main()
 	int i;
 	pthread_t tid[2]; //two pthreads
 
-	for(int i; i < 5;i++)
+	for(int i; i < 10;i++)
 	{	
 		pthread_create(&tid[0], NULL, &NorthHomies, NULL); // creating pthread
 		pthread_create(&tid[1], NULL, &SouthHomies, NULL); // creating p thread
